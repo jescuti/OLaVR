@@ -15,9 +15,9 @@ public class VoxelRenderer : MonoBehaviour
     void Start()
     {
         //TESTING
-        Vector3[] positions = new Vector3[] { new Vector3(0, 1, 0), new Vector3(1, 1, 1) };
-        Color[] colors = new Color[] { new Color(Random.value, Random.value, Random.value), new Color(Random.value, Random.value, Random.value) };
-        SetVoxels(positions, colors);
+        //Vector3[] positions = new Vector3[] { new Vector3(0, 1, 0), new Vector3(1, 1, 1) };
+        //Color[] colors = new Color[] { new Color(Random.value, Random.value, Random.value), new Color(Random.value, Random.value, Random.value) };
+        //SetVoxels(positions, colors);
 
         system = GetComponent<ParticleSystem>();
     }
@@ -43,7 +43,7 @@ public class VoxelRenderer : MonoBehaviour
         for (int i = 0; i < positions.Length; i++)
         {
             voxels[i].position = positions[i] * scale;
-            Debug.Log($"Find them at {positions[i]}");
+            Debug.Log($"Set {i}th voxel. Find them at {positions[i]}");
             voxels[i].startColor = colors[i];
             voxels[i].startSize = voxelScale;
         }
