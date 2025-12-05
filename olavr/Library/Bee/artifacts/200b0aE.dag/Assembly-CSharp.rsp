@@ -373,8 +373,6 @@
 -r:"Library/PackageCache/com.unity.testtools.codecoverage@205a02cbcb39/lib/ReportGenerator/ReportGeneratorMerged.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/PPv2URPConverters.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/Unity.Bindings.OpenImageIO.Editor.ref.dll"
--r:"Library/Bee/artifacts/200b0aE.dag/Unity.Burst.Editor.ref.dll"
--r:"Library/Bee/artifacts/200b0aE.dag/Unity.Burst.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/Unity.Collections.Editor.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/Unity.Collections.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/Unity.EditorCoroutines.Editor.ref.dll"
