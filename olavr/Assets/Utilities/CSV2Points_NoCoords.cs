@@ -29,7 +29,12 @@ public class CSV2Points_NoCoords : MonoBehaviour
         //PERCEPTUALLY UNIFORM
         Mako,
         Inferno,
-        Ocean
+        Ocean,
+        //PERCEPTUALLY UNIFORM (diverging)
+        Spectral,
+        FireAndIce,
+        Sunset
+
         
     }
     private VoxelRenderer voxelRenderer;
@@ -129,7 +134,7 @@ public class CSV2Points_NoCoords : MonoBehaviour
             case ColorRamp.Sulfur:
                 return new Color(1 - Normalize(value, min_value, max_value)/2, 1 - Normalize(value, min_value, max_value)/2, 1 - Normalize(value, min_value, max_value));
             case ColorRamp.Mako:
-                if (value > max_value / 2)
+                if (Normalize(value, min_value, max_value)>0.5)
                 {
                     return new Color(0.3f + ((Normalize(value, min_value, max_value)-0.5f)/2), 0.5f + (Normalize(value, min_value, max_value)-0.5f), 0.6f + (Normalize(value, min_value, max_value)-0.5f)/4);
                 }
@@ -138,7 +143,7 @@ public class CSV2Points_NoCoords : MonoBehaviour
                     return new Color(0.6f*Normalize(value, min_value, max_value) + (0.2f - 0.4f*Normalize(value, min_value, max_value)), Normalize(value, min_value, max_value) + (0.1f - 0.2f*Normalize(value, min_value, max_value)), 1.2f*Normalize(value, min_value, max_value)+ (0.25f - 0.5f*Normalize(value, min_value, max_value)));
                 }
             case ColorRamp.Inferno:
-                if (value > max_value / 2)
+                if (Normalize(value, min_value, max_value)>0.5)
                 {
                     return new Color(0.75f + ((Normalize(value, min_value, max_value)-0.5f)/2f), 0.25f + ((Normalize(value, min_value, max_value)-0.5f)*1.5f), 0.3f + (Normalize(value, min_value, max_value)-0.5f)/2f);
                 }
@@ -147,13 +152,40 @@ public class CSV2Points_NoCoords : MonoBehaviour
                     return new Color(1.5f*Normalize(value, min_value, max_value) + (0.25f - 0.5f*Normalize(value, min_value, max_value)), 0.6f*Normalize(value, min_value, max_value) + (0.1f - 0.2f*Normalize(value, min_value, max_value)), 0.6f*Normalize(value, min_value, max_value)+ (0.5f - Normalize(value, min_value, max_value)));
                 }
             case ColorRamp.Ocean:
-                if (value > max_value / 2)
+                if (Normalize(value, min_value, max_value)>0.5)
                 {
                     return new Color(2*Normalize(value, min_value, max_value) - 1f, 0.75f + ((Normalize(value, min_value, max_value)-0.5f)/2), 0.9f + (Normalize(value, min_value, max_value)-0.5f)/5f);
                 }
                 else
                 {
                     return new Color(0f, 1.5f*Normalize(value, min_value, max_value) + (0.1f - 0.2f*Normalize(value, min_value, max_value)), 1.8f*Normalize(value, min_value, max_value)+ (0.75f -1.5f*Normalize(value, min_value, max_value)));
+                }
+            case ColorRamp.Spectral:
+                if (Normalize(value, min_value, max_value)>0.5)
+                {
+                    return new Color(1f - (Normalize(value, min_value, max_value)-0.5f), 1f - ((Normalize(value, min_value, max_value)-0.5f)/3), 0.5f + (Normalize(value, min_value, max_value)-0.5f)/2);
+                }
+                else
+                {
+                    return new Color(1f, 1.5f*Normalize(value, min_value, max_value)+0.25f, Normalize(value, min_value, max_value));
+                }
+            case ColorRamp.FireAndIce:
+                if (Normalize(value, min_value, max_value)>0.5)
+                {
+                    return new Color(1f, 1f - (Normalize(value, min_value, max_value)-0.5f)*1.5f, 1f + (-2*(Normalize(value, min_value, max_value)-0.5f)));
+                }
+                else
+                {
+                    return new Color(2f*Normalize(value, min_value, max_value), 0.25f + Normalize(value, min_value, max_value)*1.5f, 1f);
+                }
+            case ColorRamp.Sunset:
+                if (Normalize(value, min_value, max_value)>0.5)
+                {
+                    return new Color(1f, 1f - (Normalize(value, min_value, max_value)-0.5f)*0.6f, 1f - (1.2f*(Normalize(value, min_value, max_value)-0.5f)));
+                }
+                else
+                {
+                    return new Color(1f, 0.3f + 1.4f*Normalize(value, min_value, max_value), 0.6f+Normalize(value, min_value, max_value)*0.8f);
                 }
             default:
                 return new Color(1f, Normalize(value, min_value, max_value), 0f);
